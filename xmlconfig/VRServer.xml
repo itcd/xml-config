@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<cereal>
-	<udpPort>40000</udpPort>
-	<tcpPort>40001</tcpPort>
-	<transferFunctionFile>../../Samples/CTknee/transfer_function/CT-Knee_spectrum_16_balance.tfi</transferFunctionFile>
-	<folderPath>../../Samples/supernova/</folderPath>
-	<headerFile>../../Samples/supernova/DSSupernova.mhd</headerFile>
-</cereal>
-
