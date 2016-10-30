@@ -13,11 +13,18 @@
 #include <cereal/archives/xml.hpp>
 #include <sys/stat.h>
 
-// http://stackoverflow.com/questions/17818099/how-to-check-if-a-file-exists-before-creating-a-new-file
-bool fileExists(const char * filename)
+//// http://stackoverflow.com/questions/17818099/how-to-check-if-a-file-exists-before-creating-a-new-file
+inline bool file_exist(const char * filename)
 {
 	struct stat fileInfo;
 	return stat(filename, &fileInfo) == 0;
+}
+
+//// http://stackoverflow.com/questions/8520560/get-a-file-name-from-a-path
+inline std::string base_filename(std::string const & path)
+{
+	auto filename = path.substr(path.find_last_of("/\\") + 1);
+	return filename.substr(0, filename.find_last_of('.'));
 }
 
 struct ServerConfig
@@ -37,7 +44,7 @@ struct ServerConfig
 
 	void init(const char * xml)
 	{
-		if (fileExists(xml))
+		if (file_exist(xml))
 		{
 			std::ifstream is(xml);
 			cereal::XMLInputArchive archive(is);
@@ -78,7 +85,7 @@ struct ClientConfig
 
 	void init(const char * xml)
 	{
-		if (fileExists(xml))
+		if (file_exist(xml))
 		{
 			std::ifstream is(xml);
 			cereal::XMLInputArchive archive(is);

@@ -7,10 +7,11 @@ int main(int argc, char *argv[])
 	ClientConfig cc1;
 	std::cout << cc1.toString() << std::endl;
 
-	auto xml = argc > 1 ? argv[1] : "VRServer.xml";
-	auto xml2 = argc > 2 ? argv[2] : "VRClient.xml";
-	ServerConfig sc(xml);
-	std::cout << sc.toString() << std::endl;
-	ClientConfig cc(xml2);
-	std::cout << cc.toString() << std::endl;
+	std::string xml = argc > 1 ? argv[1] : (base_filename(argv[0]) + "_VRServer.xml");
+	ServerConfig sc(xml.c_str());
+	std::cout << xml << std::endl << sc.toString() << std::endl;
+
+	std::string xml2 = argc > 2 ? argv[2] : (base_filename(argv[0]) + "_VRClient.xml");
+	ClientConfig cc(xml2.c_str());
+	std::cout << xml2 << std::endl << cc.toString() << std::endl;
 }
